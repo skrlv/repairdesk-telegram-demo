@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#17241e">
+  <meta name="description" content="Учебный Telegram-бот ремонтной мастерской: приём заявки, фотография, контакт по согласию и история ремонта. Локальный демонстрационный стенд.">
+  <title>Приёмная — бот ремонтной мастерской</title>
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#message-input">Перейти к сообщению</a>
+  <aside class="sidebar" aria-label="О проекте">
+    <a class="brand" href="#"><span class="brand-symbol" aria-hidden="true">п<span>·</span></span><span>приёмная<span class="brand-caption">ремонт начинается здесь</span></span></a>
+    <div class="sidebar-line"></div>
+    <div class="sidebar-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+    <nav class="navigation" aria-label="Разделы стенда">
+      <a class="nav-item active" href="#demo" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/></svg>Стенд бота<span>03</span></a>
+      <a class="nav-item" href="#scenario"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16H7zM10 8h4M10 12h4M10 16h2"/></svg>Как это работает</a>
+    </nav>
+    <div class="sidebar-note"><div class="small-spark" aria-hidden="true">✳</div><p>От первого сообщения<br>до готового ремонта.</p><span>Клиент и мастер видят<br>общую историю заявки.</span></div>
+    <div class="sidebar-footer"><span class="demo-dot"></span>Демонстрационный проект<span class="sidebar-footer-caption">Данные учебные · без отправки</span></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar">
+      <div class="breadcrumb">Портфолио <span>/</span> Telegram-бот</div>
+      <span class="connection" id="connection-status"><i></i>Подключаем локальный стенд</span>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <div class="eyebrow"><span></span>СЕРВИС БЕЗ ЛИШНИХ СООБЩЕНИЙ</div>
+          <h1 id="page-title">Сломалось?<br>Начнём с заявки<span class="title-dot">.</span></h1>
+          <p class="intro-copy">Бот соберёт детали неисправности, а мастер продолжит работу. Вся история — в одном месте.</p>
+        </div>
+        <div class="intro-aside"><div class="abstract-mark" aria-hidden="true"><span>↗</span><i></i><b></b></div><p>Telegram-бот<br><span>для ремонтной мастерской</span></p></div>
+      </section>
+      <div class="mode-notice"><span class="notice-icon" aria-hidden="true">i</span><p><strong>Это локальная демонстрация.</strong> Сообщения обрабатывает код бота на этом компьютере. В Telegram ничего не отправляется. Используйте только учебные данные.</p></div>
+      <div class="demo-layout" id="demo">
+        <section class="chat-card" aria-labelledby="chat-title">
+          <div class="chat-heading"><div class="bot-avatar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 18 7-7M14 3a5 5 0 0 0-4 7L3 17a2.8 2.8 0 0 0 4 4l7-7a5 5 0 0 0 7-6l-4 4-5-5 4-4h-2Z"/></svg></div><div><h2 id="chat-title">Приёмная мастерской</h2><p><span class="online-dot"></span><span id="bot-state">Локальный бот</span></p></div><span class="local-tag">ДЕМО</span></div>
+          <div class="actor-area"><span class="control-label">Вы смотрите как</span><div class="actor-switch" role="group" aria-label="Роль в демонстрации"><button class="actor-button selected" type="button" data-actor="client" aria-pressed="true"><span class="actor-icon">А</span>Клиент А</button><button class="actor-button" type="button" data-actor="other" aria-pressed="false"><span class="actor-icon">Б</span>Клиент Б</button><button class="actor-button" type="button" data-actor="staff" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3h6v4H7zM4 7h12v9H4zM8 10h4"/></svg>Сотрудник</button></div></div>
+          <div class="conversation" id="conversation" role="log" aria-label="Переписка с ботом" aria-live="polite" aria-relevant="additions" tabindex="0"><div class="empty-state"><span class="empty-symbol" aria-hidden="true">↗</span><h3>Здесь начинается диалог</h3><p>Загружаем локальную историю…</p></div></div>
+          <div id="request-keyboard" class="request-keyboard" hidden></div>
+          <p class="chat-error" id="chat-error" role="alert" hidden></p>
+          <div class="quick-commands" aria-label="Быстрые команды"><button type="button" data-command="/new"><span>＋</span>Новая заявка</button><button type="button" data-command="/mine">Мои заявки</button><button type="button" data-command="/start">Помощь</button><button type="button" data-command="/staff" class="staff-command" hidden>Все заявки</button><button type="button" data-command="/cancel" class="cancel-command">Отменить шаги</button></div>
+          <form class="composer" id="message-form"><label class="sr-only" for="message-input">Сообщение боту</label><input id="message-input" name="message" type="text" maxlength="2200" placeholder="Напишите сообщение…" autocomplete="off" required><button class="photo-button" type="button" id="photo-button" title="Передать учебное фото неисправности" aria-label="Передать учебное фото неисправности"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h5l2-3h4l2 3h5v13H3z"/><circle cx="12" cy="13" r="4"/></svg></button><button class="send-button" type="submit" aria-label="Отправить локальному боту"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 11 16-7-7 16-2-7-7-2Z"/><path d="m11 13 9-9"/></svg></button></form>
+          <div class="composer-caption"><span id="actor-caption">Клиент А · учебный диалог</span><span>Только на этом компьютере</span></div>
+        </section>
+        <aside class="scenario-panel" id="scenario" aria-labelledby="scenario-title">
+          <div class="scenario-header"><div class="eyebrow">ПОПРОБУЙТЕ САМИ</div><h2 id="scenario-title">Одна заявка.<br> Весь путь.</h2><p>Пройдите сценарий клиента, затем переключитесь на сотрудника.</p></div>
+          <ol class="scenario-steps">
+            <li><span class="step-number">01</span><div><h3>Расскажите о поломке</h3><p>Устройство и описание —<br>бот задаст вопросы по очереди.</p><div class="sample-buttons"><button type="button" data-sample="Ноутбук (демо)">Пример устройства ↗</button><button type="button" data-sample="Демонстрация: ноутбук не включается после подключения зарядки. Индикатор питания не горит.">Пример описания ↗</button></div></div></li>
+            <li><span class="step-number">02</span><div><h3>Покажите неисправность</h3><p>Кнопка камеры отправит<br>учебную иллюстрацию.</p></div></li>
+            <li><span class="step-number">03</span><div><h3>Выберите способ связи</h3><p>Телефон — только с согласия.<br>Можно продолжить без него.</p></div></li>
+            <li><span class="step-number">04</span><div><h3>Подтвердите заявку</h3><p>Проверьте карточку перед<br>сохранением в базе.</p></div></li>
+            <li><span class="step-number">05</span><div><h3>Продолжите как мастер</h3><p>Откройте все заявки,<br>измените статус и историю.</p></div></li>
+          </ol>
+          <div class="privacy-card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></svg><div><h3>У каждого — свой доступ</h3><p>Клиент Б не видит заявки клиента А. Сотрудник может работать со всеми заявками.</p></div></div>
+        </aside>
+      </div>
+      <section class="process-section" aria-labelledby="process-title"><div><div class="eyebrow">ПРОЗРАЧНЫЙ ПРОЦЕСС</div><h2 id="process-title">Статус меняется. История остаётся.</h2></div><ol class="status-pipeline"><li><span>01</span>Новая</li><li><span>02</span>Диагностика</li><li><span>03</span>В работе</li><li><span>04</span>Готова</li><li><span>05</span>Закрыта</li></ol><p class="process-note">На ранних этапах мастер может отменить заявку. Закрытые и отменённые заявки остаются в истории.</p></section>
+      <footer class="page-footer"><p>Роли можно переключать только в этом стенде. В Telegram права сотрудника задаются по его ID.</p><span>ПРИЁМНАЯ / ДЕМО-ПРОЕКТ 03</span></footer>
+    </main>
+  </div>
+  <template id="photo-template"><div class="demo-photo"><svg viewBox="0 0 300 170" role="img" aria-label="Учебная иллюстрация неисправного ноутбука"><rect width="300" height="170" rx="12" fill="#dfe6df"/><path d="M66 36h168v99H66z" fill="#263c30"/><path d="M73 43h154v85H73z" fill="#f1f3e9"/><path d="m52 136 196 0 16 15H36z" fill="#738b76"/><path d="m157 62-17 25h14l-9 24 27-32h-17l11-17" fill="#b95737"/><path d="M123 144h54" stroke="#d8e2d7" stroke-width="3"/><circle cx="150" cy="39" r="1" fill="#b6cd8a"/></svg><span>Учебное фото · иллюстрация</span></div></template>
+</body>
+</html>

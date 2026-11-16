@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#17281f">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="Приёмная — демонстрационный Telegram-бот ремонтной мастерской. Сценарий заявки, фото неисправности, контакт с согласия клиента, статусы и права доступа.">
+  <title>Приёмная — Telegram-бот ремонтной мастерской</title>
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#scenario">Перейти к сценарию</a>
+  <header class="header">
+    <a class="brand" href="./" aria-label="Приёмная — главная"><span class="mark" aria-hidden="true">п·</span><span>приёмная<small>ремонт начинается здесь</small></span></a>
+    <nav aria-label="Разделы"><a href="#scenario">Сценарий</a><a href="#inside">Что внутри</a><a class="source-link" href="./instructions.html#source">Комплект проекта <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-copy"><p class="eyebrow"><span></span> TELEGRAM-БОТ ДЛЯ МАСТЕРСКОЙ</p><h1 id="title">Сломалось?<br>Начнём с заявки<span>.</span></h1><p class="lead">Бот собирает детали неисправности.<br>Мастер ведёт ремонт. Клиент видит историю.</p><a class="primary-link" href="#scenario">Посмотреть сценарий <span aria-hidden="true">↗</span></a></div>
+      <div class="hero-note"><div class="orbit" aria-hidden="true"><span>↗</span><i></i></div><p>От первого обращения<br>до выдачи устройства.</p><span>Портфолио · демонстрационный проект</span></div>
+    </section>
+    <aside class="notice" aria-label="Режим демонстрации"><span class="info" aria-hidden="true">i</span><p><strong>Это статическая иллюстрация сценария.</strong> Все сообщения и данные ниже учебные. Страница не создаёт заявки, не хранит контакты и не подключена к Telegram. Полноценное локальное демо запускает Python и обрабатывает сообщения настоящим ядром бота.</p></aside>
+
+    <section class="walkthrough" id="scenario" aria-labelledby="scenario-title">
+      <div class="section-intro"><div><p class="eyebrow">ОДНА ЗАЯВКА. ТРИ РОЛИ.</p><h2 id="scenario-title">Пройдите весь путь.</h2></div><p>Переключайте роли и шаги.<br>Это просмотр готового учебного примера.</p></div>
+      <div class="demo-grid">
+        <aside class="scenario-nav" aria-label="Управление сценарием">
+          <span class="field-label">Посмотреть как</span>
+          <div class="roles" role="group" aria-label="Роль в учебном сценарии"><button type="button" data-role="client" aria-pressed="true" class="selected">Клиент А</button><button type="button" data-role="staff" aria-pressed="false">Сотрудник</button><button type="button" data-role="other" aria-pressed="false">Клиент Б</button></div>
+          <div class="step-list" id="step-list" aria-label="Шаги сценария"></div>
+          <div class="local-note"><span aria-hidden="true">⌘</span><p><strong>Хотите проверить сами?</strong><br>В локальном стенде можно вводить свои учебные сообщения. Он работает без токена.</p><a href="./instructions.html">Инструкция запуска <span aria-hidden="true">↗</span></a></div>
+        </aside>
+        <div class="chat-card">
+          <div class="chat-header"><span class="bot-mark" aria-hidden="true">п·</span><div><h3>Приёмная мастерской</h3><p>Учебный пример · без отправки</p></div><span class="tag">СЦЕНАРИЙ</span></div>
+          <div class="chat-stage" id="chat-stage" aria-live="polite" aria-atomic="true"></div>
+          <div class="demo-controls"><button type="button" id="previous" aria-label="Предыдущий шаг">← Назад</button><span id="step-count"></span><button type="button" id="next">Далее →</button></div>
+        </div>
+        <aside class="explanation" aria-live="polite" aria-atomic="true"><span class="eyebrow">ЧТО ПРОИСХОДИТ</span><h3 id="explanation-title"></h3><p id="explanation-text"></p><div id="contact-choice" hidden><span class="field-label">Варианты учебного сценария</span><div class="choices" role="group" aria-label="Вариант согласия на контакт"><button type="button" data-contact="no" aria-pressed="true" class="selected">Без телефона</button><button type="button" data-contact="yes" aria-pressed="false">С согласием</button></div></div><div class="data-caption"><span aria-hidden="true">✳</span><p>Названия устройств, переписка и заявка №1 — демонстрационные данные.</p></div></aside>
+      </div>
+      <noscript><p class="noscript">Для переключения шагов включите JavaScript. В примере клиент указывает ноутбук и неисправность, прикладывает учебное фото, выбирает передачу контакта и подтверждает заявку. Сотрудник проводит её через статусы. Другой клиент получает отказ в доступе.</p></noscript>
+    </section>
+
+    <section class="process" aria-labelledby="process-title"><p class="eyebrow">ПОНЯТНЫЙ ПРОЦЕСС</p><h2 id="process-title">Статус меняется.<br>История остаётся.</h2><ol><li><span>01</span>Новая</li><li><span>02</span>Диагностика</li><li><span>03</span>В ремонте</li><li><span>04</span>Готова к выдаче</li><li><span>05</span>Выдана</li></ol><p>До готовности сотрудник может отменить заявку. Закрытые и отменённые заявки остаются в истории.</p></section>
+
+    <section class="inside" id="inside" aria-labelledby="inside-title"><div class="inside-heading"><p class="eyebrow">КОД, КОТОРЫЙ МОЖНО ПРОВЕРИТЬ</p><h2 id="inside-title">Демонстрация с продолжением.</h2></div><div class="feature-grid"><article><span>01 / ПРИЁМ</span><h3>Обращение по шагам</h3><p>Устройство, описание, фото, контакт по желанию и подтверждение. Незавершённый черновик можно отменить.</p></article><article><span>02 / ДОСТУП</span><h3>Своя заявка — своему клиенту</h3><p>Права проверяет ядро бота. Сотрудники задаются списком Telegram ID в переменных окружения.</p></article><article><span>03 / ХРАНЕНИЕ</span><h3>Заявка и её история</h3><p>SQLite хранит черновики, заявки и изменения статусов. В реальном режиме сохраняется Telegram file_id фотографии.</p></article></div><div class="connection-note"><div><span class="eyebrow">ДЛЯ РЕАЛЬНОГО ПОДКЛЮЧЕНИЯ</span><h3>Токен, ID сотрудников и среда запуска.</h3><p>В комплекте есть отдельный транспорт Telegram Bot API. Для работы в Telegram владелец подключает свой токен и запускает процесс бота. GitHub Pages показывает только эту витрину; сервер бота здесь не работает.</p></div><a class="primary-link" href="./instructions.html">Открыть инструкцию <span aria-hidden="true">↗</span></a></div></section>
+  </main>
+  <footer><a class="brand footer-brand" href="./"><span class="mark" aria-hidden="true">п·</span><span>приёмная</span></a><p>Демонстрационный Telegram-бот.<br>Реальный бот не зарегистрирован, сообщения не отправляются.</p><a href="./instructions.html#source">Как запустить ↗</a></footer>
+  <template id="sample-photo"><figure class="sample-photo"><svg viewBox="0 0 300 170" role="img" aria-label="Условная иллюстрация неисправного ноутбука"><rect width="300" height="170" rx="10" fill="#dfe6df"/><path d="M66 36h168v99H66z" fill="#263c30"/><path d="M73 43h154v85H73z" fill="#f1f3e9"/><path d="m52 136 196 0 16 15H36z" fill="#738b76"/><path d="m157 62-17 25h14l-9 24 27-32h-17l11-17" fill="#ad4e32"/><path d="M123 144h54" stroke="#d8e2d7" stroke-width="3"/></svg><figcaption>Учебная иллюстрация · условное фото</figcaption></figure></template>
+</body>
+</html>
